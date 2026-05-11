@@ -1,4 +1,9 @@
-def process_user_data(user_data, include_history=False):
+from typing import TypedDict
+class UserData(TypedDict):
+    id: int
+    name: str
+
+def process_user_data(user_data: UserData, include_history=False):
     user_id = user_data["id"]
     name = user_data["name"]
     
@@ -12,7 +17,8 @@ def process_user_data(user_data, include_history=False):
     
     return result
 
-def get_user_history(user_id):
+def get_user_history(user_id: int):
+    
     # Simulate database call
     return [
         {"action": "login", "timestamp": "2023-10-01T10:30:00"},
@@ -20,6 +26,6 @@ def get_user_history(user_id):
     ]
 
 # Sample usage
-sample_user = {"id": 42, "name": "Alice"}
+sample_user: UserData = {"id": 42, "name": "Alice"}
 processed = process_user_data(sample_user, True)
 print(processed)
